@@ -98,8 +98,8 @@ public class Leecode {
 //        System.out.println(countAndSay(5));
 
 //        String strs[]=new String[]{"flower","flow","flight"};
-        String strs[]=new String[]{"c","c","b"};
-        System.out.println(longestCommonPrefix(strs));
+//        String strs[]=new String[]{"c","c","b"};
+//        System.out.println(longestCommonPrefix(strs));
 
     }
 
