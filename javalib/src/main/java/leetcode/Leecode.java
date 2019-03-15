@@ -100,36 +100,124 @@ public class Leecode {
 //        String strs[]=new String[]{"flower","flow","flight"};
 //        String strs[]=new String[]{"c","c","b"};
 //        System.out.println(longestCommonPrefix(strs));
+        ListNode nodes[] = new ListNode[5];
+        for (int i = 4; i >= 0; i--) {
+            nodes[i] = new ListNode(i+1);
+            if (i < nodes.length - 1)
+                nodes[i].next = nodes[i + 1];
+        }
+        ListNode node = removeNthFromEnd2(nodes[0], 2);
+        while (node != null ) {
+            if(node.next != null)
+            System.out.print(node.val + "->"+node.next.val+" ");
+            else
+                System.out.print(node.val + "->null");
 
+            node = node.next;
+        }
+    }
+
+    /**
+     * 删除链表的倒数第N个节点
+     * 双指针
+     * @param head
+     * @param n
+     * @return
+     */
+    static public ListNode removeNthFromEnd2(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode first = dummy;
+        ListNode second = dummy;
+        for (int i = 1; i < n + 1; i++) {
+            first = first.next;
+        }
+        while (first.next != null) {
+            first = first.next;
+            second = second.next;
+        }
+        second.next = second.next.next;
+        return dummy.next;
+    }
+
+    /**
+     * 删除链表的倒数第N个节点
+     * @param head
+     * @param n
+     * @return
+     */
+    static public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head.next == null) {
+            return head = null;
+        }
+        int i = 0;
+        HashMap hashMap = new HashMap();
+        do {
+            hashMap.put(i, head);
+            i++;
+            head = head.next;
+        } while (head != null);
+        ListNode temp = (ListNode) hashMap.get(i - n);
+        //尾节点
+        if(temp.next==null){
+             ((ListNode) hashMap.get(i - n-1)).next=null;
+            temp=null;
+        }else{
+            temp.val = temp.next.val;
+            temp.next = temp.next.next;
+            temp = null;
+        }
+        return (ListNode) hashMap.get(0);
+    }
+
+    /**
+     * 删除链表中的节点
+     * 你将只被给定要求被删除的节点。
+     *
+     * @param node
+     */
+    static public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+
+    static public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
     }
 
     /**
      * 最长公共前缀
+     *
      * @param strs
      * @return
      */
     static public String longestCommonPrefix(String[] strs) {
-        if(strs.length==0)
+        if (strs.length == 0)
             return "";
-        if(strs.length==1)
+        if (strs.length == 1)
             return strs[0];
-        int min=strs[0].length();
-        for(int i=1;i<strs.length;i++){
-          if(min>strs[i].length())
-              min=strs[i].length();
+        int min = strs[0].length();
+        for (int i = 1; i < strs.length; i++) {
+            if (min > strs[i].length())
+                min = strs[i].length();
         }
-        if(min==0)
+        if (min == 0)
             return "";
-        for(int i=0;i<min;i++){
-            char c=strs[0].charAt(i);
-            for(int j=1;j<strs.length;j++){
-                if(c!=strs[j].charAt(i)){
-                    if(i==0)
+        for (int i = 0; i < min; i++) {
+            char c = strs[0].charAt(i);
+            for (int j = 1; j < strs.length; j++) {
+                if (c != strs[j].charAt(i)) {
+                    if (i == 0)
                         return "";
-                    return strs[0].substring(0,i);
+                    return strs[0].substring(0, i);
                 }
-                if(i==min-1&&j==strs.length-1)
-                    return strs[0].substring(0,i+1);
+                if (i == min - 1 && j == strs.length - 1)
+                    return strs[0].substring(0, i + 1);
             }
         }
         return "";
@@ -138,6 +226,7 @@ public class Leecode {
     /**
      * 报数 需要优化
      * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/5/strings/39/
+     *
      * @param n
      * @return
      */
@@ -228,7 +317,7 @@ public class Leecode {
      * @return
      */
     static public int strStr2(String haystack, String needle) {
-        if(needle.length()==0)
+        if (needle.length() == 0)
             return 0;
 //        int t = 0;
         int next[] = next(needle);
