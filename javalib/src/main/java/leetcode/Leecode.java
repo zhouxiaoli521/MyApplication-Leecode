@@ -101,25 +101,41 @@ public class Leecode {
 //        String strs[]=new String[]{"c","c","b"};
 //        System.out.println(longestCommonPrefix(strs));
         ListNode nodes[] = new ListNode[5];
-        for (int i = 4; i >= 0; i--) {
-            nodes[i] = new ListNode(i+1);
+        for (int i = nodes.length-1; i >= 0; i--) {
+            nodes[i] = new ListNode(i + 1);
             if (i < nodes.length - 1)
                 nodes[i].next = nodes[i + 1];
         }
-        ListNode node = removeNthFromEnd2(nodes[0], 2);
-        while (node != null ) {
-            if(node.next != null)
-            System.out.print(node.val + "->"+node.next.val+" ");
+//        ListNode node = removeNthFromEnd2(nodes[0], 2);
+        ListNode node = reverseList(nodes[0]);
+        while (node != null) {
+            if (node.next != null)
+                System.out.print(node.val + "->" + node.next.val + " ");
             else
                 System.out.print(node.val + "->null");
-
             node = node.next;
         }
     }
 
     /**
+     * 反转链表
+     * @param head
+     * @return
+     */
+    static public ListNode reverseList(ListNode head) {
+        if(head==null||head.next==null)
+            return head;
+        ListNode dummy=reverseList(head.next);
+        head.next.next=head;
+        head.next=null;
+        return dummy;
+    }
+
+
+    /**
      * 删除链表的倒数第N个节点
      * 双指针
+     *
      * @param head
      * @param n
      * @return
@@ -142,6 +158,7 @@ public class Leecode {
 
     /**
      * 删除链表的倒数第N个节点
+     *
      * @param head
      * @param n
      * @return
@@ -159,10 +176,10 @@ public class Leecode {
         } while (head != null);
         ListNode temp = (ListNode) hashMap.get(i - n);
         //尾节点
-        if(temp.next==null){
-             ((ListNode) hashMap.get(i - n-1)).next=null;
-            temp=null;
-        }else{
+        if (temp.next == null) {
+            ((ListNode) hashMap.get(i - n - 1)).next = null;
+            temp = null;
+        } else {
             temp.val = temp.next.val;
             temp.next = temp.next.next;
             temp = null;

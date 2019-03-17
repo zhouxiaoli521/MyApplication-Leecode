@@ -1,25 +1,14 @@
 package com.example.javalib;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class MyTest {
     public static void main(String[] args) {
-        ArrayList list=null;
-        Iterator it = list.iterator();
-        int index = 0;
-        while (it.hasNext())
-        {
-            Object obj = it.next();
-            it.remove();
-            list.remove(9);
-            index ++;
-        }
+        int a[]=new int[5];
+        System.out.println(a.length);
 }
 
 
       static class A {
-        protected int value;
+        int value;
         public A (int v) {
 //            setValue(v);
         }
