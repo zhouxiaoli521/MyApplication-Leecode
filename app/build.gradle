@@ -9,6 +9,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk{
+            moduleName "native-lib"
+            ldLibs "log", "z", "m"
+            abiFilters "armeabi", "armeabi-v7a", "x86"
+            //用于指定应用应该使用哪个标准库，此处添加c++库支持
+            stl "stlport_static"        //  支持stl
+            cFlags "-fexceptions"        // 支持exception
+        }
     }
     buildTypes {
         release {

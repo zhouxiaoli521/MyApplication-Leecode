@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -12,18 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    static {
+        System.loadLibrary("native-lib");
+    }
     HandlerThread mHT;
     Handler mainHander,workHander;
     TextView tv;
     Button bt1,bt2,bt3;
-
+    public static native String stringFromJNI();
+    //添加的一个带参有返回值的native函数
+    public native String setString(String str);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt1 = findViewById(R.id.button);
         bt2 = findViewById(R.id.button2);
         bt3 = findViewById(R.id.button3);
-        Uri uri=Uri.parse("");
-        Resources.Theme theme;
 
         bt1.setOnClickListener(this);
         bt2.setOnClickListener(this);
@@ -81,7 +77,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-        Log.e("Message",JNITest.get());
+        //调用MainActivity中的方法(stringFromJNI()方法)...
+        tv.setText(stringFromJNI());
+
+        //调用MainActivity中的方法(setString()方法)...
+        bt1.setText(setString("Hello,欢迎来到JNI的世界..."));
+
+        //调用HongBao类中的java方法<sub()方法>
+        bt2.setText("测试HongBao类java中sub(5,3)方法相减的结果："+HongBao.sub(5,3));
+
+        //调用HongBao类中的java native方法<add()方法>
+        bt3.setText("测试HongBao类native的add(5,3)方法相加的结果："+HongBao.add(3,5));
+
+//        Log.e("Message",JNITest.get());
     }
 
     private void updateUI(final String msg){
