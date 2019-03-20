@@ -2,9 +2,18 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'junit:junit:4.12'
 }
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 sourceCompatibility = "7"
 targetCompatibility = "7"
+
+//测试
+def aClosure={
+    println("55555")
+}
+afterEvaluate {
+    aClosure.call()
+}

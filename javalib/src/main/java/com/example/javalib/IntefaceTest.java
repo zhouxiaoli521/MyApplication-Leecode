@@ -1,7 +1,7 @@
 package com.example.javalib;
 
 
-interface IntefaceTest {
-
+abstract  interface IntefaceTest {
+    public abstract void print();
     void Abc();
 }

@@ -100,14 +100,23 @@ public class Leecode {
 //        String strs[]=new String[]{"flower","flow","flight"};
 //        String strs[]=new String[]{"c","c","b"};
 //        System.out.println(longestCommonPrefix(strs));
-        ListNode nodes[] = new ListNode[5];
+        ListNode nodes[] = new ListNode[3];
         for (int i = nodes.length-1; i >= 0; i--) {
-            nodes[i] = new ListNode(i + 1);
+            nodes[i] = new ListNode(i*2 + 1);
             if (i < nodes.length - 1)
                 nodes[i].next = nodes[i + 1];
         }
+        ListNode nodes2[] = new ListNode[3];
+        for (int i = nodes2.length-1; i >= 0; i--) {
+            nodes2[i] = new ListNode(i *2);
+            if (i < nodes.length - 1)
+                nodes2[i].next = nodes2[i + 1];
+        }
 //        ListNode node = removeNthFromEnd2(nodes[0], 2);
-        ListNode node = reverseList(nodes[0]);
+//        ListNode node = reverseList(nodes[0]);
+//        ListNode node = reverseList2(nodes[0]);
+//        ListNode node = reverseBetween(nodes[0],2,4);
+        ListNode node = mergeTwoLists2(nodes[0],nodes2[0]);
         while (node != null) {
             if (node.next != null)
                 System.out.print(node.val + "->" + node.next.val + " ");
@@ -117,6 +126,151 @@ public class Leecode {
         }
     }
 
+    /**
+     * 要实现 O(n) 的时间复杂度和 O(1) 的空间复杂度，需要翻转后半部分
+     * @param head 1
+     * @return 回文链表
+     */
+    public boolean isPalindrome(ListNode head) {
+        // 要实现 O(n) 的时间复杂度和 O(1) 的空间复杂度，需要翻转后半部分
+        if (head == null || head.next == null) {
+            return true;
+        }
+        ListNode fast = head;
+        ListNode slow = head;
+        // 根据快慢指针，找到链表的中点
+        while(fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        slow = reverseList2(slow.next);
+        while(slow != null) {
+            if (head.val != slow.val) {
+                return false;
+            }
+            head = head.next;
+            slow = slow.next;
+        }
+        return true;
+    }
+
+    /**
+     * 合并两个有序链表
+     * @param l1 1
+     * @param l2 2
+     * @return l0
+     */
+  static   public ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
+      if(l1==null) return l2;
+      if(l2==null) return l1;
+
+      ListNode l0=null;
+      if(l1.val<=l2.val){
+          l0=l1;
+          l0.next=mergeTwoLists2(l1.next,l2);
+      }else {
+          l0=l2;
+          l2.next=mergeTwoLists2(l1,l2.next);
+      }
+      return l0;
+  }
+    /**
+     * 合并两个有序链表
+     * @param l1
+     * @param l2
+     * @return
+     */
+  static   public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+      ListNode l0 = new ListNode(0);
+      ListNode start = l0;
+      while (l1 != null && l2 != null) {
+          if (l1.val < l2.val) {
+              l0.next = l1;
+              l0 = l0.next;
+              l1 = l1.next;
+          } else {
+              l0.next = l2;
+              l0 = l0.next;
+              l2 = l2.next;
+          }
+      }
+      if (l1 == null) {
+          l0.next = l2;
+      } else {
+          l0.next = l1;
+      }
+      return start.next;
+
+  }
+
+    /**
+     * 反转链表 头插法
+     * 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
+     * @param head
+     * @return
+     */
+    static public ListNode reverseBetween(ListNode head,int m,int n) {
+        if (head == null || head.next == null)
+            return head;
+        if (m < 1 || m > n || n == m)
+            return head;
+        ListNode pre = null;
+        ListNode pos = null;
+        // 记录m之前的一个节点 用于指向反转之后的首个节点
+        ListNode mNode = null;
+        //记录m位置的节点 这个节点就是反转之后的最后一个节点 用它来指向n之后的正常节点
+        ListNode nNode = null;
+        //zero节点 用于方法返回首节点
+        ListNode zNode = head;
+
+        int index = 0;
+        if(m==1){
+            nNode = head;
+        }else{
+            //让index走到m-1 保存mNode
+            while (index+1<m-1){
+                index++;
+                head=head.next;
+            }
+            mNode=head;
+            //让index走到m 保存nNode
+            index++;
+            head=head.next;
+            nNode=head;
+        }
+        while (index<n) {
+            index++;
+            pos = head.next;
+            head.next = pre;
+            pre = head;
+            head = pos;
+        }
+        //如果不是从第一个节点开始反转 就用保存的m-1的节点 指向反转之后的第一个节点
+        if ( mNode != null) {
+            mNode.next = pre;
+        }
+        //指向n后面的正常节点
+        nNode.next = head;
+        return m == 1?pre:zNode;
+    }
+    /**
+     * 反转链表 头插法
+     * @param head
+     * @return
+     */
+    static public ListNode reverseList2(ListNode head) {
+        if(head==null||head.next==null)
+            return head;
+        ListNode pre=null;
+        ListNode pos=null;
+        while (head!=null){
+            pos=head.next;
+            head.next=pre;
+            pre=head;
+            head=pos;
+        }
+        return pre;
+    }
     /**
      * 反转链表
      * @param head
@@ -168,7 +322,7 @@ public class Leecode {
             return head = null;
         }
         int i = 0;
-        HashMap hashMap = new HashMap();
+        HashMap<Integer,ListNode> hashMap = new HashMap<Integer,ListNode>();
         do {
             hashMap.put(i, head);
             i++;
@@ -590,7 +744,7 @@ public class Leecode {
     static public int firstUniqChar(String s) {
         if (s.length() <= 1)
             return s.length() - 1;
-        HashMap map = new HashMap();
+        HashMap<Character,Integer> map = new HashMap<Character,Integer>();
         char c[] = s.toCharArray();
         for (int i = 0; i < c.length; i++) {
             map.put(c[i], i);
@@ -762,7 +916,7 @@ public class Leecode {
 //        for(int i=0;i<nums.length;i++){
 //            map.put(nums[i],i);
 //        }
-        Map map = new HashMap();
+        Map<Integer,Integer> map = new HashMap<Integer,Integer>();
         for (int i = 0; i < nums.length; i++) {
             int result = target - nums[i];
             if (map.containsKey(result) && (int) map.get(result) != i) {
@@ -930,7 +1084,7 @@ public class Leecode {
      */
     static public boolean containsDuplicate2(int[] nums) {
         if (nums.length < 2) return false;
-        Set set = new HashSet();
+        Set<Integer> set = new HashSet<Integer>();
         for (int i : nums)
             set.add(i);
         return set.size() != nums.length ? true : false;
