@@ -26,8 +26,9 @@ class Z extends X {
 //        System.out.println("z");
     }
 
-    X start() {
-        Y y = new Y();
+   final X start() {
+
+        final  Y y = new Y();
         System.out.println("" + y.x);
         Y y2 = fix(y);
         System.out.println("" + y.x + " " + y2.x);
