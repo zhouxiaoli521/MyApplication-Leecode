@@ -12,9 +12,9 @@ class X extends Y {
     Y y = new Y();
 
     public X() {
-//        System.out.println("X");
+        System.out.println("X");
     }
-    Y start() {
+   Y start2() {
         return null;
     }
 
@@ -41,6 +41,8 @@ class Z extends X {
     }
 
     public static void main(String[] args) {
+        Z z=new Z();
+        z.start2();
     }
 }
 

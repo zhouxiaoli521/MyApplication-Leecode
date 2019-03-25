@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class LeecodeTest {
@@ -22,7 +23,61 @@ public class LeecodeTest {
         }
     }
 
-    @Test(timeout = 1000000000)
+    /**
+     * 验证二叉搜索树
+     */
+    @Test
+    public void isValidBSTTest(){
+        LeetcodeTrees trees=new LeetcodeTrees();
+        TreeNode t0=new TreeNode(2);
+        TreeNode t1=new TreeNode(1);
+        TreeNode t2=new TreeNode(4);
+        TreeNode t3=new TreeNode(3);
+        TreeNode t4=new TreeNode(6);
+        t0.left=t1;
+        t0.right=t2;
+        t2.left=t3;
+        t2.right=t4;
+//        assertNotNull(trees.isValidBST(t0));
+//        assertFalse(trees.isValidBST(t0));
+        assertTrue(trees.isValidBST(t0));
+    }
+    /**
+     * 二叉树最大深度
+     */
+    @Test
+    public void maxDepthTest(){
+        LeetcodeTrees trees=new LeetcodeTrees();
+        TreeNode t0=new TreeNode(3);
+        TreeNode t1=new TreeNode(9);
+        TreeNode t2=new TreeNode(20);
+        TreeNode t3=new TreeNode(15);
+        TreeNode t4=new TreeNode(7);
+        t0.left=t1;
+        t0.right=t2;
+        t2.left=t3;
+        t2.right=t4;
+        assertEquals(3,trees.maxDepth(t0));
+    }
+    @Test
+    public void maxDepthTest2(){
+        LeetcodeTrees trees=new LeetcodeTrees();
+        TreeNode t0=new TreeNode(3);
+        TreeNode t1=new TreeNode(9);
+        TreeNode t2=new TreeNode(20);
+        TreeNode t3=new TreeNode(15);
+        TreeNode t4=new TreeNode(7);
+        t0.left=t1;
+        t0.right=t2;
+        t2.left=t3;
+        t3.right=t4;
+        assertEquals(4,trees.maxDepth(t0));
+    }
+
+    /**
+     * 环形链表II
+     */
+    @Test(timeout = 1000)
     public void detectCycleTest3(){
         ListNode l0 = new ListNode(-1);
         ListNode l1= new ListNode(-7);
