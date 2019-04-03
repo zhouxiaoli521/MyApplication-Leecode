@@ -3,6 +3,7 @@ package leetcode;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -23,6 +24,54 @@ public class LeecodeTest {
         }
     }
 
+    /**
+     * 验证二叉搜索树
+     */
+    @Test
+    public void isMergeTest(){
+        LeetcodeSortingAndSearching lsas=new LeetcodeSortingAndSearching();
+        int nums0[]={1,2,2,3,5,6};
+        int nums1[]={1,2,3,0,0,0};
+        int nums2[]={2,5,6};
+        lsas.merge(nums1,3,nums2,3);
+        assertArrayEquals(nums0,nums1);
+    }
+    /**
+     * 验证二叉搜索树
+     */
+    @Test
+    public void isMergeTest2(){
+        LeetcodeSortingAndSearching lsas=new LeetcodeSortingAndSearching();
+        int nums0[]={1,2};
+        int nums1[]={2,0};
+        int nums2[]={1};
+        lsas.merge(nums1,1,nums2,1);
+        assertArrayEquals(nums0,nums1);
+    }
+    /**
+     * 验证二叉搜索树
+     */
+    @Test
+    public void isMergeTest3(){
+        LeetcodeSortingAndSearching lsas=new LeetcodeSortingAndSearching();
+        int nums0[]={-1,0,0,1,2,2,3,3,3};
+        int nums1[]={-1,0,0,3,3,3,0,0,0};
+        int nums2[]={1,2,2};
+        lsas.merge(nums1,6,nums2,3);
+        assertArrayEquals(nums0,nums1);
+    }
+    /**
+     * 验证二叉搜索树
+     */
+    @Test
+    public void isMergeTest4(){
+        LeetcodeSortingAndSearching lsas=new LeetcodeSortingAndSearching();
+        int nums0[]={-1,0,0,1,1,1,2,3,3};
+        int nums1[]={0,0,3,0,0,0,0,0,0};
+        int nums2[]={-1,1,1,1,2,3};
+        lsas.merge(nums1,3,nums2,6);
+        assertArrayEquals(nums0,nums1);
+    }
     /**
      * 验证二叉搜索树
      */
