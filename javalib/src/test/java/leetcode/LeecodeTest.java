@@ -25,7 +25,15 @@ public class LeecodeTest {
     }
 
     /**
-     * 验证二叉搜索树
+     * 第一个错误的版本
+     */
+    @Test
+    public void isFirstBadVersionTest(){
+        LeetcodeSortingAndSearching lsas=new LeetcodeSortingAndSearching();
+        assertEquals(3,lsas.firstBadVersion(8));
+    }
+    /**
+     * 合并两个有序数组
      */
     @Test
     public void isMergeTest(){
@@ -37,7 +45,7 @@ public class LeecodeTest {
         assertArrayEquals(nums0,nums1);
     }
     /**
-     * 验证二叉搜索树
+     * 合并两个有序数组
      */
     @Test
     public void isMergeTest2(){
@@ -49,7 +57,7 @@ public class LeecodeTest {
         assertArrayEquals(nums0,nums1);
     }
     /**
-     * 验证二叉搜索树
+     * 合并两个有序数组
      */
     @Test
     public void isMergeTest3(){
@@ -61,7 +69,7 @@ public class LeecodeTest {
         assertArrayEquals(nums0,nums1);
     }
     /**
-     * 验证二叉搜索树
+     * 合并两个有序数组
      */
     @Test
     public void isMergeTest4(){

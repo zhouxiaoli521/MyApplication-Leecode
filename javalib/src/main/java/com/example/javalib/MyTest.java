@@ -1,11 +1,15 @@
 package com.example.javalib;
 
-class MyTest {
+import java.applet.*;
+import java.util.TreeMap;
+
+public class MyTest extends Applet {
     public static void main(String[] args) {
         new MyTest().test();
         int i = 0;
         i= i ++;
         System.out.println(i);
+        TreeMap t;
     }
 
     public void add(Byte b) {
@@ -26,9 +30,12 @@ class Foo {
     public Foo(String word) {
         System.out.println(word);
     }
+
+    public Foo(int i){}
+    public void PP(){}
 }
 
-class Parent {
+class Parent extends Foo{
 
     Foo foo = new Foo("Parent's parameter");
 
@@ -43,6 +50,7 @@ class Parent {
     }
 
     public Parent(int p) {
+        super(p);
         System.out.println("Parent.Parent()");
     }
 }
@@ -63,6 +71,7 @@ class Child extends Parent {
     public Child(int c) {
         super(c);
         super.foo.hashCode();
+        super.PP();
         System.out.println("Child.Child()");
     }
 }
