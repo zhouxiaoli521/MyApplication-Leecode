@@ -1,15 +1,20 @@
 package com.example.javalib;
 
-import java.applet.*;
-import java.util.TreeMap;
+import java.applet.Applet;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class MyTest extends Applet {
     public static void main(String[] args) {
         new MyTest().test();
-        int i = 0;
-        i= i ++;
-        System.out.println(i);
-        TreeMap t;
+        Foo f1=new Foo(1);
+        Parent f2=new Parent(1);
+        Foo f3=new Child(1);
+        System.out.println(f1+" "+f2+" "+f3);
+        f1.PP();
+        f2.pp();
+        ((Child) f3).pp();
+        Arrays.asList();
     }
 
     public void add(Byte b) {
@@ -26,13 +31,12 @@ public class MyTest extends Applet {
     }
 }
 
-class Foo {
+ class Foo {
     public Foo(String word) {
         System.out.println(word);
     }
-
     public Foo(int i){}
-    public void PP(){}
+    final public void PP(){System.out.println("====f===");}
 }
 
 class Parent extends Foo{
@@ -48,7 +52,9 @@ class Parent extends Foo{
     {
         System.out.println("Parent's code block");
     }
-
+    public void pp(){
+        System.out.println("====p===");
+    };
     public Parent(int p) {
         super(p);
         System.out.println("Parent.Parent()");
@@ -71,7 +77,10 @@ class Child extends Parent {
     public Child(int c) {
         super(c);
         super.foo.hashCode();
-        super.PP();
         System.out.println("Child.Child()");
     }
+
+    public void pp(){
+        System.out.println("====c===");
+    };
 }

@@ -6,7 +6,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class LeecodeTest {
@@ -24,6 +23,34 @@ public class LeecodeTest {
         }
     }
 
+    /**
+     * 买卖股票的最佳时机
+     */
+    @Test
+    public void isMaxProfitTest2(){
+        LeetcodeDynamicProgramming ldp=new LeetcodeDynamicProgramming();
+        int prices[]=new int[]{1,2};
+        assertEquals(1,ldp.maxProfit(prices));
+        prices=new int[]{2,1,2,1,0,1,2};
+        assertEquals(2,ldp.maxProfit(prices));
+    }
+    /**
+     * 第一个错误的版本
+     */
+    @Test
+    public void isMaxProfitTest(){
+        LeetcodeDynamicProgramming ldp=new LeetcodeDynamicProgramming();
+        int prices[]=new int[]{7,2,8,1,3,6,4};
+        assertEquals(6,ldp.maxProfit(prices));
+    }
+    /**
+     * 第一个错误的版本
+     */
+    @Test
+    public void isClimbTest(){
+        LeetcodeDynamicProgramming ldp=new LeetcodeDynamicProgramming();
+        assertEquals(5,ldp.climbStairs2(5));
+    }
     /**
      * 第一个错误的版本
      */

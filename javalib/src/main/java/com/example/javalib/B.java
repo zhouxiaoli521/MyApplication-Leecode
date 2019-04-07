@@ -4,6 +4,12 @@ package com.example.javalib;
     public void Abc() {
         main(null);
     }
+
+    @Override
+    public void inte() {
+
+    }
+
     public B(){
 
     }

@@ -1,6 +1,7 @@
 package com.example.javalib;
 
 
- interface IntefaceTest {
+  interface IntefaceTest {
     int k=10;
+    void inte();
 }
