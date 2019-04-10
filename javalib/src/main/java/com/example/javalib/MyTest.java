@@ -14,7 +14,6 @@ public class MyTest extends Applet {
         f1.PP();
         f2.pp();
         ((Child) f3).pp();
-        Arrays.asList();
     }
 
     public void add(Byte b) {

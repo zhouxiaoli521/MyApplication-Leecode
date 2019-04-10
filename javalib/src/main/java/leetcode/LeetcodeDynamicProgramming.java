@@ -2,6 +2,57 @@ package leetcode;
 
 public class LeetcodeDynamicProgramming {
 
+
+    /**
+     * 打家劫舍
+     * [1,1,2,4,1]
+     * 2,7,9,3,1
+     */
+    public int rob(int[] nums) {
+        int sum = 0;
+        int sum2 = 0;
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i-1 != index ) {
+                sum = Math.max(nums[i] + sum, nums[i]);
+                sum2 = Math.max(sum2, sum);
+                index=i;
+            }
+        }
+        int sum0=sum;
+        sum=0;
+        sum2=0;
+        index = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (i-1 != index ) {
+                sum = Math.max(nums[i] + sum, nums[i]);
+                sum2 = Math.max(sum2, sum);
+                index=i;
+            }
+        }
+        return sum>sum0?sum:sum0;
+    }
+
+    /**
+     *  最大子序和
+     *  Kadane算法扫描一次整个数列的所有数值，在每一个扫描点计算以该点数值为结束点的子数列的最大和（正数和）。
+     *  该子数列由两部分组成：以前一个位置为结束点的最大子数列、该位置的数值。
+     *  因为该算法用到了“最佳子结构”（以每个位置为终点的最大子数列都是基于其前一位置的最大子数列计算得出），
+     *  该算法可看成动态规划的一个例子。
+     *  https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E5%88%97%E9%97%AE%E9%A2%98
+     *   −2, 1, −3, 4, −1, 2, 1, −5, 4
+     */
+    public int maxSubArray(int[] nums) {
+        if(nums.length<1)return 0;
+        int max=0;
+        int max1=Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++){
+            max = Math.max(max+nums[i] , nums[i]);
+            max1=Math.max(max,max1);
+        }
+        return max1;
+    }
+
     /**
      * 买卖股票的最佳时机
      */

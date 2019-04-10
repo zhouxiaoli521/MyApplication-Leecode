@@ -27,6 +27,24 @@ public class LeecodeTest {
      * 买卖股票的最佳时机
      */
     @Test
+    public void robTest(){
+        LeetcodeDynamicProgramming ldp=new LeetcodeDynamicProgramming();
+        int nums[]=new int[]{1,1,2,4,1};
+        assertEquals(5,ldp.maxSubArray(nums));
+//         nums=new int[]{2,7,9,3,1};
+//        assertEquals(12,ldp.maxSubArray(nums));
+    }
+    /**
+     * 买卖股票的最佳时机
+     */
+    @Test
+    public void maxSubArrayTest(){
+        LeetcodeDynamicProgramming ldp=new LeetcodeDynamicProgramming();
+        int nums[]=new int[]{-2,1,-3,4,-1,2,1,-5,4};
+        assertEquals(6,ldp.maxSubArray(nums));
+         nums=new int[]{-1};
+        assertEquals(-1,ldp.maxSubArray(nums));
+    }
     public void isMaxProfitTest2(){
         LeetcodeDynamicProgramming ldp=new LeetcodeDynamicProgramming();
         int prices[]=new int[]{1,2};
