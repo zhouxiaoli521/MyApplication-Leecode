@@ -3,9 +3,12 @@ package leetcode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class LeecodeTest {
@@ -23,6 +26,44 @@ public class LeecodeTest {
         }
     }
 
+    /**
+     * 最小栈
+     */
+    @Test
+    public void MinStackTest2() {
+        LeecodeDesign.MinStack lm = new LeecodeDesign().new MinStack();
+        lm.push(2147483646);
+        lm.push(2147483646);
+        lm.push(2147483647);
+        lm.top();
+        lm.pop();
+        assertEquals(2147483646,lm.getMin());
+        lm.pop();
+        assertEquals(2147483646,lm.getMin());
+        lm.pop();
+        lm.push(2147483647);
+        lm.top();
+        assertEquals(2147483647,lm.getMin());
+        lm.push(-2147483648);
+        lm.top();
+        assertEquals(-2147483648,lm.getMin());
+        lm.pop();
+        assertEquals(2147483647,lm.getMin());
+    }
+    /**
+     * 最小栈
+     */
+    @Test
+    public void MinStackTest() {
+        LeecodeDesign.MinStack lm = new LeecodeDesign().new MinStack();
+        lm.push(-2);
+        lm.push(0);
+        lm.push(-3);
+        assertEquals(-3,lm.getMin());
+        lm.pop();
+        lm.pop();
+        assertEquals(-2,lm.getMin());
+    }
     /**
      * 买卖股票的最佳时机
      */

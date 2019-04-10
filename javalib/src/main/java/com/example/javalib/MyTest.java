@@ -2,18 +2,26 @@ package com.example.javalib;
 
 import java.applet.Applet;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class MyTest extends Applet {
     public static void main(String[] args) {
-        new MyTest().test();
-        Foo f1=new Foo(1);
-        Parent f2=new Parent(1);
-        Foo f3=new Child(1);
-        System.out.println(f1+" "+f2+" "+f3);
-        f1.PP();
-        f2.pp();
-        ((Child) f3).pp();
+        ArrayList list = new ArrayList();
+        Random rand = new Random();
+        int n=10;
+        boolean[] bool = new boolean[n];
+        int num = 0;
+        for (int i = 0; i < n; i++) {
+            do {
+                // 如果产生的数相同继续循环
+                num = rand.nextInt(n);
+            } while (bool[num]);
+            bool[num] = true;
+            list.add(num);
+        }
+        System.out.print(list.toString());
     }
 
     public void add(Byte b) {
