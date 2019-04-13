@@ -3,7 +3,9 @@ package leetcode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -27,9 +29,69 @@ public class LeecodeTest {
     }
 
     /**
+     * 罗马数字
+     */
+    @Test
+    public void hammingWeightTest(){
+        LeecodeMath lm=new LeecodeMath();
+        assertEquals(3,lm.hammingWeight(7));
+        assertEquals(31,lm.hammingWeight(-3));
+    }
+
+    /**
+     * 罗马数字
+     */
+    @Test
+    public void romanToIntTest(){
+        LeecodeMath lm=new LeecodeMath();
+        assertEquals(58,lm.romanToInt("LVIII"));
+    }
+    /**
+     * 3的幂次方
+     */
+    @Test
+    public void isPowerOfThreeTest() {
+        LeecodeMath lm=new LeecodeMath();
+        assertTrue(lm.isPowerOfThree(27));
+        assertTrue(!lm.isPowerOfThree(0));
+        assertTrue(lm.isPowerOfThree(9));
+        assertTrue(!lm.isPowerOfThree(45));
+    }
+    /**
+     * 质素
+     */
+    @Test
+    public void countPrimesTest() {
+        LeecodeMath lm=new LeecodeMath();
+        assertEquals(4,lm.countPrimes(10));
+    }
+
+    /**
      * 最小栈
      */
     @Test
+    public void fizzBuzzTest() {
+        LeecodeMath lm=new LeecodeMath();
+        String[] s=new String[]{
+                "1",
+                "2",
+                "Fizz",
+                "4",
+                "Buzz",
+                "Fizz",
+                "7",
+                "8",
+                "Fizz",
+                "Buzz",
+                "11",
+                "Fizz",
+                "13",
+                "14",
+                "FizzBuzz"};
+        String[] array = (String[])lm.fizzBuzz(15).toArray(new String[s.length]);
+        assertArrayEquals(s,array);
+
+    }
     public void MinStackTest2() {
         LeecodeDesign.MinStack lm = new LeecodeDesign().new MinStack();
         lm.push(2147483646);

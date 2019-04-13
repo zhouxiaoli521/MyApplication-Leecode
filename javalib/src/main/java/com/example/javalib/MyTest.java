@@ -6,22 +6,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class MyTest extends Applet {
+import leetcode.LeecodeMath;
+
+public class MyTest  extends A {
+    MyTest() {
+        super("B");
+        System.out.print("B");
+    }
     public static void main(String[] args) {
-        ArrayList list = new ArrayList();
-        Random rand = new Random();
-        int n=10;
-        boolean[] bool = new boolean[n];
-        int num = 0;
-        for (int i = 0; i < n; i++) {
-            do {
-                // 如果产生的数相同继续循环
-                num = rand.nextInt(n);
-            } while (bool[num]);
-            bool[num] = true;
-            list.add(num);
-        }
-        System.out.print(list.toString());
+        new MyTest();
+        int x=1;float y=2;
+
     }
 
     public void add(Byte b) {
@@ -37,7 +32,24 @@ public class MyTest extends Applet {
         System.out.print(b + "");
     }
 }
+class C {
+    C() {
+        System.out.print("C");
+    }
+}
 
+class A {
+    C c = new C();
+
+    A() {
+        this("A");
+        System.out.print("A");
+    }
+
+    A(String s) {
+        System.out.print(s);
+    }
+}
  class Foo {
     public Foo(String word) {
         System.out.println(word);
