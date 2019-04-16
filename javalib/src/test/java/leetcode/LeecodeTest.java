@@ -27,13 +27,62 @@ public class LeecodeTest {
                 nodes[i].next = nodes[i + 1];
         }
     }
+    /**
+     * 杨辉三角
+     */
+    @Test
+    public void isValidTest(){
+        LeecodeOthers lm=new LeecodeOthers();
+        assertTrue(lm.isValid("()"));
+        assertTrue(lm.isValid("()[]{}"));
+        assertTrue(lm.isValid("()"));
+        assertFalse(lm.isValid("(]"));
+        assertFalse(lm.isValid("([)]"));
+        assertTrue(lm.isValid("{[]}"));
+        assertFalse(lm.isValid("[])"));
+    }
+    /**
+     * 杨辉三角
+     */
+    @Test
+    public void generateTest(){
+        LeecodeOthers lm=new LeecodeOthers();
+        assertEquals("[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]", lm.generate(5).toString());
+    }
+
 
     /**
-     * 罗马数字
+     * 颠倒二进制
+     */
+    @Test
+    public void reverseBitsTest2(){
+        LeecodeOthers lm=new LeecodeOthers();
+        assertEquals(964176192,lm.reverseBits2(43261596));
+        assertEquals(-1073741825,lm.reverseBits2(-3));
+    }
+    /**
+     * 颠倒二进制
+     */
+    @Test
+    public void reverseBitsTest(){
+        LeecodeOthers lm=new LeecodeOthers();
+        assertEquals(964176192,lm.reverseBits(43261596));
+        assertEquals(-1073741825,lm.reverseBits(-3));
+    }
+    /**
+     * 汉明距离
+     */
+    @Test
+    public void hammingDistanceTest(){
+        LeecodeOthers lm=new LeecodeOthers();
+        assertEquals(2,lm.hammingDistance(1,4));
+    }
+    /**
+     * 汉明数字
      */
     @Test
     public void hammingWeightTest(){
-        LeecodeMath lm=new LeecodeMath();
+        LeecodeOthers lm=new LeecodeOthers();
         assertEquals(3,lm.hammingWeight(7));
         assertEquals(31,lm.hammingWeight(-3));
     }

@@ -14,9 +14,17 @@ public class MyTest  extends A {
         System.out.print("B");
     }
     public static void main(String[] args) {
-        new MyTest();
-        int x=1;float y=2;
-
+        /**
+         *       var0 = (var0 & 1431655765) << 1 | var0 >>> 1 & 1431655765;
+         *         var0 = (var0 & 858993459) << 2 | var0 >>> 2 & 858993459;
+         *         var0 = (var0 & 252645135) << 4 | var0 >>> 4 & 252645135;
+         */
+        System.out.println(Integer.toBinaryString(1431655765));
+        System.out.println(Integer.toBinaryString(858993459));
+        System.out.println(Integer.toBinaryString(252645135));
+        char []s={ '(',')','{','}','[',']'};
+        for(int c:s)
+            System.out.println(c);
     }
 
     public void add(Byte b) {
