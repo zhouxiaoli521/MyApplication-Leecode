@@ -19,71 +19,14 @@ public class Leecode {
 
     public static void main(String[] args) {
 
-//        int nums[] = new int[]{0,0,1,1,1,2,2,3,3,4};
-//        int nums[] = new int[]{1, 1, 2};
-//        removeDuplicates(nums);
-
-//        int nums[] = new int[]{0,1,3,6,4,7};
-//        int nums2[] = new int[]{7,6,3,4,5};
-//        int nums3[] = new int[]{7,1,5,3,6,4};
-//        maxProfit2(nums);
-//        maxProfit2(nums2);
-//        maxProfit2(nums3);
-
-//        int nums3[] = new int[]{7,1,5,3,6,4};
-//        rotate(nums,4);
-//        rotate2(nums,4);
-
-//        int nums[] = new int[]{3,1,1,5,3,6};
-//        System.out.println(containsDuplicate(nums));
-//        System.out.println(containsDuplicate2(nums));
-
-//        int nums[] = new int[]{3,1,1,5,3,5,6,8,8};
-//        System.out.println(singleNumber2(nums));
-//        int nums1[] = new int[]{3,1,1,7,5};
-//        int nums2[] = new int[]{3,22,44,66,1,1,5,3,5,6};
-//        int nums1[] = new int[]{1,2,2,1};
-//        int nums2[] = new int[]{1,2};
-//        intersect(nums1,nums2);
-
-//        int nums1[] = new int[]{9,9,9};
-//        System.out.println(Arrays.toString(plusOne(nums1)));
-
-//        int nums[] = new int[]{1,1,0,3,12};
-//        moveZeroes2(nums);
-
-//        int nums[]=new int[]{2,5,1,7};
-//        System.out.println(Arrays.toString(twoSum(nums,9)));
 
 //        int nums[][]=new int[][]{{11,12,13,14},{15,16,17,18},{19,20,21,22},{23,24,25,26}};
 //        rotate(nums);
-//        char board[][]=new char[][]{
-//  {'5','3','.','.','7','.','.','.','.'},
-//  {'6','.','.','1','9','5','.','.','.'},
-//  {'.','9','8','.','.','.','.','6','.'},
-//  {'8','.','.','.','6','.','.','.','3'},
-//  {'4','.','.','8','.','3','.','.','1'},
-//  {'7','.','.','.','2','.','.','.','6'},
-//  {'.','6','.','.','.','.','2','8','.'},
-//  {'.','.','.','4','1','9','.','.','5'},
-//  {'.','.','.','.','8','.','.','7','9'}
-//        };
-//        System.out.println(isValidSudoku(board));
-//
-
-
     }
-
-
-
-
-
 
     /**
      * 有效的数独
      *
-     * @param board
-     * @return
      */
     static public boolean isValidSudoku(char[][] board) {
         boolean[][] row = new boolean[9][9];
@@ -139,85 +82,7 @@ public class Leecode {
         }
     }
 
-    /**
-     * 两数之和
-     *
-     * @param nums
-     * @param target
-     * @return
-     */
-    static public int[] twoSum2(int[] nums, int target) {
-        for (int i = 0; i < nums.length; i++) {
-            int result = target - nums[i];
-            for (int j = i + 1; j < nums.length; j++) {
-                if (result == nums[j]) {
-                    return new int[]{i, j};
-                }
-            }
-        }
-        return null;
-    }
 
-    /**
-     * 两数之和 hashmap
-     *
-     * @param nums
-     * @param target
-     * @return
-     */
-    static public int[] twoSum(int[] nums, int target) {
-//        for(int i=0;i<nums.length;i++){
-//            map.put(nums[i],i);
-//        }
-        Map<Integer,Integer> map = new HashMap<Integer,Integer>();
-        for (int i = 0; i < nums.length; i++) {
-            int result = target - nums[i];
-            if (map.containsKey(result) && (int) map.get(result) != i) {
-                return new int[]{(int) map.get(result), i};
-            }
-            map.put(nums[i], i);
-        }
-        return null;
-    }
-
-    /**
-     * [1,1,0,3,12]
-     *
-     * @param nums 双指针
-     */
-    static public void moveZeroes2(int[] nums) {
-        int swap = 0;
-        for (int i = 0, j = 0; j < nums.length; j++) {
-            if (nums[j] != 0) {
-                nums[i] = nums[j];
-                i++;
-                swap++;
-            }
-        }
-        for (int i = swap; i < nums.length; i++)
-            nums[i] = 0;
-        System.out.println(Arrays.toString(nums));
-    }
-
-    /**
-     * [0,1,0,3,12]
-     *
-     * @param nums 双指针
-     */
-    static public void moveZeroes(int[] nums) {
-        for (int i = 0, j = 1; j < nums.length; j++) {
-            if (nums[i] != 0) {
-                j = ++i;
-                continue;
-            }
-            if (nums[j] == 0) {
-                continue;
-            }
-            swap(nums, i, j);
-            i++;
-        }
-        System.out.println(Arrays.toString(nums));
-    }
 
     /**
      * 加一
@@ -248,6 +113,10 @@ public class Leecode {
 
     /**
      * 两个数组的交集 II
+     * 输入: nums1 = [1,2,2,1], nums2 = [2,2]
+     * 输出: [2,2]
+     * 输入: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+     * 输出: [4,9]
      */
     static public int[] intersect(int[] nums1, int[] nums2) {
         List<Integer> list = new ArrayList<Integer>();
@@ -275,18 +144,6 @@ public class Leecode {
         return a;
     }
 
-    /**
-     * 异或
-     *
-     * @param nums
-     * @return
-     */
-    static public int singleNumber2(int[] nums) {
-        for (int i = 1; i < nums.length; i += 2) {
-            nums[0] ^= nums[i] ^ nums[i + 1];
-        }
-        return nums[0];
-    }
 
     /**
      * 唯一的数
@@ -316,41 +173,8 @@ public class Leecode {
         return nums[nums.length - 1];
     }
 
-    /**
-     * 存在重复 双重循环
-     */
-    static public boolean containsDuplicate(int[] nums) {
-        if (nums.length < 2) return false;
-        for (int i = 0; i < nums.length - 1; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[i] == nums[j]) {
-                    return true;
-                }
 
-            }
-        }
-        return false;
-    }
 
-    /**
-     * 存在重复 ste
-     */
-    static public boolean containsDuplicate2(int[] nums) {
-        if (nums.length < 2) return false;
-        Set<Integer> set = new HashSet<Integer>();
-        for (int i : nums)
-            set.add(i);
-        return set.size() != nums.length ? true : false;
-    }
-
-    //旋转数组
-    static public void rotate2(int[] nums, int k) {
-        k = k % nums.length;
-        int[] tmp = nums.clone();
-        System.arraycopy(tmp, tmp.length - k, nums, 0, k);
-        System.arraycopy(tmp, 0, nums, k, tmp.length - k);
-        System.out.println(Arrays.toString(nums));
-    }
 
     /**
      * 旋转数组
@@ -379,38 +203,6 @@ public class Leecode {
             cur = index;
         }
         System.out.println(Arrays.toString(nums));
-    }
-
-    /**
-     * 买卖股票的最佳时机 II
-     * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/22/
-     */
-    static public int maxProfit2(int[] prices) {
-        int profit = 0;
-        for (int i = 1; i < prices.length; i++) {
-            if (prices[i] > prices[i - 1]) {
-                profit += prices[i] - prices[i - 1];
-            }
-        }
-        System.out.println(profit);
-        return profit;
-    }
-
-    /**
-     * 从排序数组中删除重复项 双指针
-     * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/21/
-     */
-    static public int removeDuplicates(int[] nums) {
-        int i = 0;
-        for (int j = 1; j < nums.length; j++) {
-            if (nums[i] != nums[j]) {
-                i++;
-                nums[i] = nums[j];
-            }
-        }
-        System.out.println(Arrays.toString(nums));
-        System.out.println(i + 1);
-        return i + 1;
     }
 
 }

@@ -13,6 +13,9 @@ public class MyTest  extends A {
         super("B");
         System.out.print("B");
     }
+    public static String[] MY_TEST_PACKAGES = { "com.example.androidtests",
+            "com.android.browser", "com.android.browserone",
+            "com.just.library.agentweb","io.dcloud.H51267F6C","cn.trinea.android.developertools","com.kk.xx.phoneinfo" };
     public static void main(String[] args) {
         /**
          *       var0 = (var0 & 1431655765) << 1 | var0 >>> 1 & 1431655765;
@@ -22,9 +25,13 @@ public class MyTest  extends A {
         System.out.println(Integer.toBinaryString(1431655765));
         System.out.println(Integer.toBinaryString(858993459));
         System.out.println(Integer.toBinaryString(252645135));
-        char []s={ '(',')','{','}','[',']'};
-        for(int c:s)
-            System.out.println(c);
+        if (Arrays.asList(MY_TEST_PACKAGES).contains(
+                "com.kk.xx.phoneinfo")) {
+            System.out.println(Arrays.asList(MY_TEST_PACKAGES));
+        }
+        System.out.println("720x1280".split("x")[0]+" "+"720x1280".split("x")[1]);
+        int a = Integer.parseInt("1024");
+        int b = Integer.valueOf("1024").intValue();
     }
 
     public void add(Byte b) {

@@ -3,30 +3,175 @@ package leetcode;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class LeecodeTest {
-    LeetcodeLinked mLinked;
-    ListNode nodes[];
+    //============================================LeecodeArray======================================================/
 
-    @Before
-    public void init() {
-        mLinked=new LeetcodeLinked();
-        nodes = new ListNode[3];
-        for (int i = nodes.length - 1; i >= 0; i--) {
-            nodes[i] = new ListNode(i + 1);
-            if (i < nodes.length - 1)
-                nodes[i].next = nodes[i + 1];
-        }
+    /**
+     * 有效的数独
+     */
+    @Test
+    public void isValidSudokuTest() {
+        LeecodeArray la = new LeecodeArray();
+        char board[][] = new char[][]{
+                {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+                {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+                {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+                {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+                {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+                {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+                {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+                {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+                {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
+        assertTrue(la.isValidSudoku(board));
+        board[0][0]='8';
+        assertFalse(la.isValidSudoku(board));
     }
+    /**
+     * 两数之和
+     */
+    @Test
+    public void twoSumTest() {
+        LeecodeArray la = new LeecodeArray();
+        assertArrayEquals(new int[]{0,1}, la.twoSum(new int[]{2, 7, 11, 15},9));
+    }
+
+    /**
+     * 零移动
+     */
+    @Test
+    public void moveZeroesTest() {
+        LeecodeArray la = new LeecodeArray();
+        int nums1[] = new int[]{0,1,0,3,12};
+        la.moveZeroes(nums1);
+        assertArrayEquals(new int[]{1,3,12,0,0}, nums1);
+    }
+
+    /**
+     * 加一
+     */
+    @Test
+    public void plusOneTest() {
+        LeecodeArray la = new LeecodeArray();
+        int nums1[] = new int[]{3, 1, 1};
+        assertArrayEquals(new int[]{3,1, 2}, la.plusOne(nums1));
+        nums1 = new int[]{9,9,9};
+        assertArrayEquals(new int[]{1,0,0,0}, la.plusOne(nums1));
+    }
+    /**
+     * 两个数组的交集
+     */
+    @Test
+    public void intersectTest() {
+        LeecodeArray la = new LeecodeArray();
+        int nums1[] = new int[]{3, 1, 1, 7, 5};
+        int nums2[] = new int[]{3, 22, 44, 66, 1, 1, 5, 3, 5, 6};
+        assertArrayEquals(new int[]{1, 1, 3, 5}, la.intersect(nums1, nums2));
+        nums1 = new int[]{1, 2, 2, 1};
+        nums2 = new int[]{1, 2};
+        assertArrayEquals(new int[]{1, 2}, la.intersect(nums1, nums2));
+    }
+    /**
+     * 只出现一次的数字
+     */
+    @Test
+    public void singleNumberTest() {
+        LeecodeArray la = new LeecodeArray();
+        assertEquals(1,la.singleNumber(new int[]{2,2,1}));
+        assertEquals(4,la.singleNumber(new int[]{4,1,2,1,2}));
+        assertEquals(6,la.singleNumber(new int[]{3,1,1,5,3,5,6,8,8}));
+    }
+
+    /**
+     * 存在重复
+     */
+    @Test
+    public void containsDuplicateTest(){
+        LeecodeArray la=new LeecodeArray();
+        assertTrue(la.containsDuplicate(new int[]{1,2,3,1}));
+        assertFalse(la.containsDuplicate(new int[]{1,2,3,4}));
+        assertTrue(la.containsDuplicate(new int[]{1,1,1,3,3,4,3,2,4,2}));
+        assertTrue(la.containsDuplicate(new int[]{3,1,1,5,3,6}));
+        //算法2
+        assertTrue(la.containsDuplicate2(new int[]{1,2,3,1}));
+        assertFalse(la.containsDuplicate2(new int[]{1,2,3,4}));
+        assertTrue(la.containsDuplicate2(new int[]{1,1,1,3,3,4,3,2,4,2}));
+        assertTrue(la.containsDuplicate2(new int[]{3,1,1,5,3,6}));
+    }
+    /**
+     *  旋转数组
+     */
+    @Test
+    public void rotateTest(){
+        LeecodeArray la=new LeecodeArray();
+        int []nums={1,2,3,4,5,6,7};
+        int []out={5,6,7,1,2,3,4};
+        la.rotate(nums,3);
+        assertArrayEquals(nums,out);
+
+        nums=new int[]{-1,-100,3,99};
+        out=new int[]{3,99,-1,-100};
+        la.rotate(nums,2);
+        assertArrayEquals(nums,out);
+
+        nums=new int[]{1};
+        out=new int[]{1};
+        la.rotate(nums,0);
+        assertArrayEquals(nums,out);
+
+        nums=new int[]{1};
+        la.rotate(nums,1);
+        assertArrayEquals(nums,out);
+
+        //算法2
+        nums=new int[]{1,2,3,4,5,6,7};
+        out=new int[]{5,6,7,1,2,3,4};
+        la.rotate2(nums,3);
+        assertArrayEquals(nums,out);
+
+        nums=new int[]{-1,-100,3,99};
+        out=new int[]{3,99,-1,-100};
+        la.rotate2(nums,2);
+        assertArrayEquals(nums,out);
+
+        nums=new int[]{1};
+        out=new int[]{1};
+        la.rotate2(nums,0);
+        assertArrayEquals(nums,out);
+
+        nums=new int[]{1};
+        la.rotate2(nums,1);
+        assertArrayEquals(nums,out);
+    }
+    /**
+     *  买卖股票的最佳时机 II
+     */
+    @Test
+    public void maxProfitTest(){
+        LeecodeArray la=new LeecodeArray();
+        int []nums={7,1,5,3,6,4};
+        assertEquals(7,la.maxProfit(nums));
+        nums=new int[]{1,2,3,4,5};
+        assertEquals(4,la.maxProfit(nums));
+        nums=new int[]{7,6,4,3,1};
+        assertEquals(0,la.maxProfit(nums));
+    }
+    /**
+     * 从排序数组中删除重复项
+     */
+    @Test
+    public void removeDuplicatesTest(){
+        LeecodeArray la=new LeecodeArray();
+        assertEquals(5,la.removeDuplicates(new int[]{0,0,1,1,1,2,2,3,3,4}));
+    }
+
+    /* ============================================LeecodeArray======================================================**/
+
     /**
      * 杨辉三角
      */
@@ -137,10 +282,11 @@ public class LeecodeTest {
                 "13",
                 "14",
                 "FizzBuzz"};
-        String[] array = (String[])lm.fizzBuzz(15).toArray(new String[s.length]);
+        String[] array = lm.fizzBuzz(15).toArray(new String[s.length]);
         assertArrayEquals(s,array);
 
     }
+    @Test
     public void MinStackTest2() {
         LeecodeDesign.MinStack lm = new LeecodeDesign().new MinStack();
         lm.push(2147483646);
@@ -197,6 +343,7 @@ public class LeecodeTest {
          nums=new int[]{-1};
         assertEquals(-1,ldp.maxSubArray(nums));
     }
+    @Test
     public void isMaxProfitTest2(){
         LeetcodeDynamicProgramming ldp=new LeetcodeDynamicProgramming();
         int prices[]=new int[]{1,2};
@@ -328,6 +475,20 @@ public class LeecodeTest {
         assertEquals(4,trees.maxDepth(t0));
     }
 
+
+    LeetcodeLinked mLinked;
+    ListNode nodes[];
+
+    @Before
+    public void init() {
+        mLinked=new LeetcodeLinked();
+        nodes = new ListNode[3];
+        for (int i = nodes.length - 1; i >= 0; i--) {
+            nodes[i] = new ListNode(i + 1);
+            if (i < nodes.length - 1)
+                nodes[i].next = nodes[i + 1];
+        }
+    }
     /**
      * 环形链表II
      */
@@ -359,8 +520,8 @@ public class LeecodeTest {
     public void detectCycleTest2(){
         ListNode l1 = new ListNode(1);
         ListNode l2= new ListNode(2);
-        ListNode l0 = new ListNode(0);
-        ListNode l4 = new ListNode(4);
+//        ListNode l0 = new ListNode(0);
+//        ListNode l4 = new ListNode(4);
         l1.next = l2;
         l2.next = l1;
 //        l0.next = l4;
@@ -432,7 +593,7 @@ public class LeecodeTest {
         l3.next = l2;
         l2.next = l1;
         nodes[2].next = l3;
-        assertEquals(true, mLinked.isPalindrome(nodes[0]));
+        assertTrue( mLinked.isPalindrome(nodes[0]));
     }
 
     @Test
@@ -442,15 +603,14 @@ public class LeecodeTest {
         ListNode l1 = new ListNode(1);
         l3.next = l2;
         l2.next = l1;
-        assertEquals(false, mLinked.isPalindrome(l3));
+        assertFalse( mLinked.isPalindrome(l3));
     }
 
     @Test(timeout = 500)
     public void isPalindrome3() {
         ListNode l3 = new ListNode(3);
-        ListNode l2 = new ListNode(3);
-        l3.next = l2;
-        assertEquals(true, mLinked.isPalindrome(l3));
+        l3.next = new ListNode(3);
+        assertTrue( mLinked.isPalindrome(l3));
     }
 
     @Test
